@@ -7,6 +7,7 @@ import {
   type TimeframeTechnicals,
   type TradeSetup,
 } from "@/lib/domain/types";
+import { fmtR } from "@/lib/format";
 import { sizePosition } from "@/lib/risk/position-sizing";
 import type { AnalysisInput, AnalysisProvider } from "./types";
 
@@ -131,10 +132,10 @@ export function mockAnalyse(input: AnalysisInput): AnalysisBody {
         decisionReason = "Aligned trend but the daily chart is extended (RSI). Wait for a pullback rather than chase.";
       } else if (sizing.rewardRiskT1 < input.riskRules.minRewardRisk) {
         decision = "WATCH";
-        decisionReason = `Aligned trend but reward/risk to Target 1 is ${sizing.rewardRiskT1.toFixed(2)}R, below your ${input.riskRules.minRewardRisk}R minimum.`;
+        decisionReason = `Aligned trend but reward/risk to Target 1 is ${fmtR(sizing.rewardRiskT1)}, below your ${input.riskRules.minRewardRisk}R minimum.`;
       } else {
         decision = "TRADE";
-        decisionReason = `All timeframes aligned ${t.alignment.toLowerCase()}; defined invalidation with ${sizing.rewardRiskT1.toFixed(2)}R to Target 1.`;
+        decisionReason = `All timeframes aligned ${t.alignment.toLowerCase()}; defined invalidation with ${fmtR(sizing.rewardRiskT1)} to Target 1.`;
         setup = candidate;
       }
     }

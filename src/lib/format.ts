@@ -23,3 +23,9 @@ export function fmtTime(iso: string | null | undefined): string {
   if (Number.isNaN(d.getTime())) return "—";
   return d.toISOString().replace("T", " ").slice(0, 16) + " UTC";
 }
+
+/** Reward/risk rounded DOWN, so 1.996R never displays as "2.00R" next to a 2R minimum. */
+export function fmtR(n: number | null | undefined): string {
+  if (n === null || n === undefined || !Number.isFinite(n)) return "—";
+  return `${(Math.floor(n * 100) / 100).toFixed(2)}R`;
+}

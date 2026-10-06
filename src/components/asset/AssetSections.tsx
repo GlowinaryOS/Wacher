@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Badge, biasTone, decisionTone, Empty, MockBadge, Notice, Panel, Stat } from "@/components/ui/primitives";
 import type { Analysis, NewsItem, Quote, RiskSettings, Scenario, SentimentItem, TechnicalSummary } from "@/lib/domain/types";
-import { fmtNum, fmtPct, fmtPrice, fmtTime } from "@/lib/format";
+import { fmtNum, fmtPct, fmtPrice, fmtR, fmtTime } from "@/lib/format";
 import type { SizingResult } from "@/lib/risk/position-sizing";
 import type { ProviderState } from "@/lib/services/research";
 
@@ -404,7 +404,7 @@ export function TradePlanPanel({
         <Stat label="Stop / invalidation" value={<span className="text-bear">{fmtPrice(setup.stop)}</span>} />
         <Stat label="Target 1" value={<span className="text-bull">{fmtPrice(setup.target1)}</span>} />
         <Stat label="Target 2" value={<span className="text-bull">{fmtPrice(setup.target2)}</span>} />
-        <Stat label="Reward / risk" value={sizing ? `${sizing.rewardRiskT1.toFixed(2)}R / ${sizing.rewardRiskT2?.toFixed(2) ?? "—"}R` : "—"} hint="Computed by Watcher" />
+        <Stat label="Reward / risk" value={sizing ? `${fmtR(sizing.rewardRiskT1)} / ${fmtR(sizing.rewardRiskT2)}` : "—"} hint="Computed by Watcher" />
         <Stat label="Confidence" value={`${setup.confidence}%`} hint="Uncalibrated until tracked" />
         <Stat label="Timeframe" value={setup.timeframe} />
         <Stat label="Risk per unit" value={fmtPrice(sizing?.riskPerUnit)} />

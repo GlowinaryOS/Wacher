@@ -1,3 +1,4 @@
+import { fmtR } from "@/lib/format";
 import type { Direction, RiskSettings } from "@/lib/domain/types";
 
 export interface SizingInput {
@@ -44,7 +45,7 @@ export function sizePosition(input: SizingInput, rules: RiskSettings): SizingRes
 
   if (rewardRiskT1 < rules.minRewardRisk) {
     violations.push(
-      `Reward/risk to Target 1 is ${rewardRiskT1.toFixed(2)}R, below your minimum of ${rules.minRewardRisk}R`,
+      `Reward/risk to Target 1 is ${fmtR(rewardRiskT1)}, below your minimum of ${rules.minRewardRisk}R`,
     );
   }
 
