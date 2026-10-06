@@ -50,7 +50,7 @@ Mock providers are refused in production builds unless
 ```bash
 npm install
 cp .env.example .env.local   # optional; defaults work for local dev
-npm run dev                  # http://localhost:3000
+npm run dev                  # http://localhost:3100
 ```
 
 Data is stored in `.watcher-data/watcher.json` (gitignored). On first run
